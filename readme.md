@@ -5,3 +5,4 @@ See the tutorial [React Lifecycles](https://www.lynda.com/React-js-tutorials/Rea
 ## Releases
 
 * Release 1.0.0 - Logger setup
+* Release 1.1.0 - Building a higher order component
