@@ -9,3 +9,4 @@ See the tutorial [React Lifecycles](https://www.lynda.com/React-js-tutorials/Rea
 * Release 1.2.0 - displayName
 * Release 1.3.0 - Initial State
 * Release 1.4.0 - Constructor
+* Release 1.4.0 - Creating your logger
