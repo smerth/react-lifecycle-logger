@@ -12,3 +12,4 @@ See the tutorial [React Lifecycles](https://www.lynda.com/React-js-tutorials/Rea
 * Release 1.5.0 - Creating your logger
 * Release 1.6.0 - componentWillMount
 * Release 1.7.0 - Modifying the prototype
+* Release 1.8.0 - render

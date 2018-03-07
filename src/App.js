@@ -5,7 +5,6 @@ class App extends Component {
   static displayName = "App";
 
   render() {
-    console.log(this.state);
     return <div>Hello</div>;
   }
 }
