@@ -7,3 +7,4 @@ See the tutorial [React Lifecycles](https://www.lynda.com/React-js-tutorials/Rea
 * Release 1.0.0 - Logger setup
 * Release 1.1.0 - Building a higher order component
 * Release 1.2.0 - displayName
+* Release 1.3.0 - Initial State
