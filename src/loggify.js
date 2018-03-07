@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 export default function loggify(Wrapped) {
+  let originals = {};
+
+  const methodsToLog = ["componentWillMount"];
+
   return class extends Component {
     render() {
       return (
