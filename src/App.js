@@ -27,16 +27,59 @@ class App extends Component {
   }
 
   render() {
+    let { showPollChild } = this.state;
     return (
       <div>
         Hello
         <h4>{this.state.data}</h4>
         <canvas ref={"appCanvas"} height={200} width={200} />
+        <button
+          onClick={() => {
+            this.setState(prevState => {
+              return {
+                showPollChild: !prevState.showPollChild
+              };
+            });
+          }}
+        >
+          {showPollChild ? "Hide" : "Show"} PollChild
+        </button>
+        {showPollChild ? <PollChild /> : null}
       </div>
     );
   }
 }
 
+class PollChild extends Component {
+  static displayName = "PollChild";
+
+  state = {
+    poll: Math.random()
+  };
+
+  componentDidMount() {
+    this.pollData();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.pollInterval);
+  }
+
+  pollData = () => {
+    this.pollInterval = setInterval(() => {
+      console.log("Poll!");
+      this.setState({
+        poll: Math.random()
+      });
+    }, 1000);
+  };
+
+  render() {
+    return <h4>poll: {this.state.poll}</h4>;
+  }
+}
+
 App = loggify(App);
+PollChild = loggify(PollChild);
 
 export default App;
