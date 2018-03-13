@@ -1,6 +1,27 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+/*
+
+  this.setState({someKey: newValue})
+
+  this.setState({someKey})
+
+  this.setState(
+    (prevState, props) => {
+      //perform any operations you need here
+      return {
+        //new object that represents changes to state
+      }
+    },
+    () => {
+      //my callback function
+    }
+  )
+
+
+*/
+
 export default function loggify(Wrapped) {
   let originals = {};
 
@@ -26,6 +47,14 @@ export default function loggify(Wrapped) {
         original = original.bind(this);
         original(...args);
       }
+    };
+
+    Wrapped.prototype.setState = function(partialState, callback) {
+      console.groupCollapsed(`${Wrapped.displayName} setState`);
+      console.log("partialState", partialState);
+      console.log("callback", callback);
+      console.groupEnd();
+      this.updater.enqueueSetState(this, partialState, callback, "setState");
     };
   });
 
