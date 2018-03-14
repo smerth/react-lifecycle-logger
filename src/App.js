@@ -30,7 +30,7 @@ class App extends Component {
 
   createParentPoll = () => {
     this.pollInterval = setInterval(() => {
-      this.setState({ parentPoll: getRandomInt(1, 5) });
+      this.setState({ parentPoll: getRandomInt(1, 2) });
     }, 1000);
   };
 
@@ -67,7 +67,7 @@ class PollChild extends Component {
   };
 
   componentDidMount() {
-    this.pollData();
+    //this.pollData()
   }
 
   componentWillUnmount() {
@@ -78,12 +78,23 @@ class PollChild extends Component {
     this.pollInterval = setInterval(() => {
       console.log("Poll!");
       this.setState({
-        poll: Math.random()
+        poll: getRandomInt(1, 4)
       });
     }, 1000);
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.parentPoll !== this.props.parentPoll) {
+      return true;
+    }
+    if (nextState.poll !== this.state.poll) {
+      return true;
+    }
+    return false;
+  }
+
   render() {
+    console.log("PollChild rerendered");
     return (
       <div>
         <h4>poll: {this.state.poll}</h4>
@@ -99,7 +110,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-App = loggify(App);
+// App = loggify(App)
 PollChild = loggify(PollChild);
 
 export default App;

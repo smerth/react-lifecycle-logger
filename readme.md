@@ -16,4 +16,5 @@ See the tutorial [React Lifecycles](https://www.lynda.com/React-js-tutorials/Rea
 * Release 1.9.0 - componentDidMount
 * Release 1.10.0 - componentWillUnmount
 * Release 1.11.0 - setState
-* Release 1.12.0 - componentWillReceiveProps & implementing shouldComponentUpdate
+* Release 1.12.0 - componentWillReceiveProps & logging shouldComponentUpdate
+* Release 1.13.0 - implementing shouldComponentUpdate
