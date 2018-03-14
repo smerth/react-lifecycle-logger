@@ -1,5 +1,19 @@
 import React, { Component } from "react";
 import loggify from "./loggify";
+import {
+  Parent,
+  Column,
+  Row,
+  ChildContainer,
+  H4,
+  H5,
+  Id,
+  Value,
+  Item,
+  NoKey,
+  Medium,
+  Faster
+} from "./styled";
 
 class App extends Component {
   static displayName = "App";
@@ -22,10 +36,10 @@ class App extends Component {
   componentDidMount() {
     this.fetchData();
     this.createParentPoll();
-    const canvasCtx = this.refs.appCanvas.getContext("2d");
-    canvasCtx.fillStyle = "blue";
-    canvasCtx.arc(75, 75, 50, 0, 2 * Math.PI);
-    canvasCtx.fill();
+    this.canvasCtx = this.refs.appCanvas.getContext("2d");
+    this.canvasCtx.fillStyle = "blue";
+    this.canvasCtx.arc(75, 75, 50, 0, 2 * Math.PI);
+    this.canvasCtx.fill();
   }
 
   createParentPoll = () => {
@@ -34,27 +48,35 @@ class App extends Component {
     }, 1000);
   };
 
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.parentPoll !== this.state.parentPoll) {
+      this.canvasCtx.clearRect(0, 0, 200, 200);
+    }
+  }
+
   render() {
     let { showPollChild, parentPoll, data } = this.state;
     return (
-      <div>
-        Hello
-        <h4>{data}</h4>
-        <h4>{parentPoll}</h4>
-        <canvas ref={"appCanvas"} height={200} width={200} />
-        <button
-          onClick={() => {
-            this.setState(prevState => {
-              return {
-                showPollChild: !prevState.showPollChild
-              };
-            });
-          }}
-        >
-          {showPollChild ? "Hide" : "Show"} PollChild
-        </button>
-        {showPollChild ? <PollChild parentPoll={parentPoll} /> : null}
-      </div>
+      <Parent>
+        <Column>
+          <H4>{data}</H4>
+          <H4>{parentPoll}</H4>
+          <canvas ref={"appCanvas"} height={200} width={200} />
+
+          <button
+            onClick={() => {
+              this.setState(prevState => {
+                return {
+                  showPollChild: !prevState.showPollChild
+                };
+              });
+            }}
+          >
+            {showPollChild ? "Hide" : "Show"} PollChild
+          </button>
+          {showPollChild ? <PollChild parentPoll={parentPoll} /> : null}
+        </Column>
+      </Parent>
     );
   }
 }
@@ -96,10 +118,10 @@ class PollChild extends Component {
   render() {
     console.log("PollChild rerendered");
     return (
-      <div>
-        <h4>poll: {this.state.poll}</h4>
-        <h4>parentPoll: {this.props.parentPoll}</h4>
-      </div>
+      <ChildContainer>
+        <H5>poll: {this.state.poll}</H5>
+        <H5>parentPoll: {this.props.parentPoll}</H5>
+      </ChildContainer>
     );
   }
 }
@@ -110,7 +132,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// App = loggify(App)
-PollChild = loggify(PollChild);
+App = loggify(App);
+// PollChild = loggify(PollChild)
 
 export default App;
