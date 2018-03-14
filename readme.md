@@ -20,3 +20,4 @@ See the tutorial [React Lifecycles](https://www.lynda.com/React-js-tutorials/Rea
 * Release 1.13.0 - implementing shouldComponentUpdate
 * Release 1.14.0 - componentWillupdate
 * Release 1.15.0 - componentDidupdate
+* Release 1.16.0 - using react-addons-perf

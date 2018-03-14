@@ -1,45 +1,31 @@
 import React, { Component } from "react";
-import loggify from "./loggify";
-import {
-  Parent,
-  Column,
-  Row,
-  ChildContainer,
-  H4,
-  H5,
-  Id,
-  Value,
-  Item,
-  NoKey,
-  Medium,
-  Faster
-} from "./styled";
+// import loggify from './loggify'
+import { Parent, Column, ChildContainer, H4, H5 } from "./styled";
 
 class App extends Component {
   static displayName = "App";
 
   state = {
-    data: "No Data yet!",
     parentPoll: "No data yet!"
   };
 
-  fetchData = () => {
-    console.log("Going to fetch data!");
-    setTimeout(() => {
-      console.log("Data retrieved");
-      this.setState({
-        data: Math.random()
-      });
-    }, 1500);
-  };
-
   componentDidMount() {
-    this.fetchData();
     this.createParentPoll();
     this.canvasCtx = this.refs.appCanvas.getContext("2d");
     this.canvasCtx.fillStyle = "blue";
     this.canvasCtx.arc(75, 75, 50, 0, 2 * Math.PI);
     this.canvasCtx.fill();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.pollInterval);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.parentPoll !== this.state.parentPoll) {
+      return true;
+    }
+    return false;
   }
 
   createParentPoll = () => {
@@ -64,11 +50,10 @@ class App extends Component {
   }
 
   render() {
-    let { showPollChild, parentPoll, data } = this.state;
+    let { showPollChild, parentPoll } = this.state;
     return (
       <Parent>
         <Column>
-          <H4>{data}</H4>
           <H4>{parentPoll}</H4>
           <canvas ref={"appCanvas"} height={200} width={200} />
 
@@ -98,7 +83,7 @@ class PollChild extends Component {
   };
 
   componentDidMount() {
-    //this.pollData()
+    this.pollData();
   }
 
   componentWillUnmount() {
@@ -141,7 +126,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-App = loggify(App);
+//App = loggify(App)
 // PollChild = loggify(PollChild)
 
 export default App;
