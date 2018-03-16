@@ -2,6 +2,8 @@
 
 See the tutorial [React Lifecycles](https://www.lynda.com/React-js-tutorials/React-Lifecycles/592509-2.html)
 
+This repo has no practical purpose other than as an accompaniment to the tutorial.
+
 ## Releases
 
 * Release 1.0.0 - Logger setup
