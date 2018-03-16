@@ -21,3 +21,6 @@ See the tutorial [React Lifecycles](https://www.lynda.com/React-js-tutorials/Rea
 * Release 1.14.0 - componentWillupdate
 * Release 1.15.0 - componentDidupdate
 * Release 1.16.0 - using react-addons-perf
+* Release 1.17.0 - list overview & generating list reports
+
+(this last release is broken because react-addons-perf no longer works at all in React 16. It’s likely that we’ll release a new version of this tool in the future. In the meantime, you can use your browser’s performance tools to profile React components.)

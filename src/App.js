@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import loggify from './loggify'
 import { Parent, Column, ChildContainer, H4, H5 } from "./styled";
+import { BigList } from "./lists";
 
 class App extends Component {
   static displayName = "App";
@@ -69,6 +70,10 @@ class App extends Component {
             {showPollChild ? "Hide" : "Show"} PollChild
           </button>
           {showPollChild ? <PollChild parentPoll={parentPoll} /> : null}
+        </Column>
+
+        <Column>
+          <BigList />
         </Column>
       </Parent>
     );
